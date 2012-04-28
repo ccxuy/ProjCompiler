@@ -1,0 +1,62 @@
+========== First ==========
+First(program)={[{]}
+First(block)={[{]}
+First(decls)={[basic, ε]}
+First(decl)={[basic]}
+First(type)={[basic]}
+First(stmts)={[id, break, if, ε, do, {, while]}
+First(stmt)={[id, break, if, do, {, while]}
+First(loc)={[id]}
+First(bool)={[id, real, num, !, true, false, (, -]}
+First(join)={[id, real, num, !, false, true, (, -]}
+First(equality)={[id, real, num, !, true, false, (, -]}
+First(rel)={[id, real, num, !, false, true, (, -]}
+First(expr)={[id, real, num, !, true, false, (, -]}
+First(term)={[id, real, num, !, false, true, (, -]}
+First(unary)={[id, real, num, !, true, false, (, -]}
+First(factor)={[id, real, num, false, true, (]}
+========== Follow ==========
+First(program)={[$, {]}
+First(block)={[id, break, if, $, do, {, while]}
+First(decls)={[basic]}
+First(decl)={[basic]}
+First(type)={[basic]}
+First(stmts)={[id, break, if, do, {, while]}
+First(stmt)={[id, break, if, do, {, while]}
+First(loc)={[id, (]}
+First(bool)={[id, real, num, !, false, true, (, -]}
+First(join)={[id, real, num, !, true, false, (, -]}
+First(equality)={[id, real, num, !, false, true, (, -]}
+First(rel)={[id, real, num, !, false, true, (, -]}
+First(expr)={[id, real, num, !, true, false, (, -]}
+First(term)={[id, real, num, !, true, false, (, -]}
+First(unary)={[id, real, num, !, false, true, (, -]}
+First(factor)={[id, real, num, !, false, true, (, -]}
+
+
+====================
+
+
+ >> terminals:
+[&&, ε, >=, while, id, real, break, basic, ==, if, ], false, do, [, else, !, ||, *, true, +, (, ), );, /, -, num, <=, !=, ;, }, {, >, =, <]
+ >> grammars:
+[Grammar [nonTerminal=program, expression=[block]], Grammar [nonTerminal=block, expression=[{decls stmts}]], Grammar [nonTerminal=decls, expression=[decls decl, ε]], Grammar [nonTerminal=decl, expression=[type id;]], Grammar [nonTerminal=type, expression=[type[num], basic]], Grammar [nonTerminal=stmts, expression=[stmts stmt, ε]], Grammar [nonTerminal=stmt, expression=[loc=bool;, if (bool) stmt, if (bool) stmt else stmt, while (bool) stmt, do stmt while (bool);, break;, block]], Grammar [nonTerminal=loc, expression=[loc[bool], id]], Grammar [nonTerminal=bool, expression=[bool || join, join]], Grammar [nonTerminal=join, expression=[join && equality, equality]], Grammar [nonTerminal=equality, expression=[equality == rel, equality!=rel, rel]], Grammar [nonTerminal=rel, expression=[expr < expr, expr <= expr, expr >= expr, expr > expr, expr]], Grammar [nonTerminal=expr, expression=[expr+term, expr-term, term]], Grammar [nonTerminal=term, expression=[term * unary, term/unary, unary]], Grammar [nonTerminal=unary, expression=[!unary, -unary, factor]], Grammar [nonTerminal=factor, expression=[(bool), loc, num, real, true, false]]]
+table size17*36  grammar size>16
+==========PARSING TABLE=========
+	|	  , && , ε , >= , while , id , real , break , basic , == , if , ] , false , do , [ , else , ! , || , * , true , + , ( , ) , ); , / , - , num , <= , != , ; , } , { , > , = , < , $ , 
+program	|	 program ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , block ,  ,  ,  ,  ,  , 
+block	|	 block ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , {decls stmts} ,  ,  ,  ,  ,  , 
+decls	|	 decls , decls declε ,  ,  ,  ,  ,  , decls declε ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+decl	|	 decl ,  ,  ,  ,  ,  ,  , type id; ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+type	|	 type ,  ,  ,  ,  ,  ,  , type[num]basic ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+stmts	|	 stmts , stmts stmtε ,  , stmts stmtε , stmts stmtε ,  , stmts stmtε ,  ,  , stmts stmtε ,  ,  , stmts stmtε ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , stmts stmtε ,  ,  ,  ,  ,  , 
+stmt	|	 stmt ,  ,  , loc=bool;if (bool) stmtif (bool) stmt else stmtwhile (bool) stmtdo stmt while (bool);break;block , loc=bool;if (bool) stmtif (bool) stmt else stmtwhile (bool) stmtdo stmt while (bool);break;block ,  , loc=bool;if (bool) stmtif (bool) stmt else stmtwhile (bool) stmtdo stmt while (bool);break;block ,  ,  , loc=bool;if (bool) stmtif (bool) stmt else stmtwhile (bool) stmtdo stmt while (bool);break;block ,  ,  , loc=bool;if (bool) stmtif (bool) stmt else stmtwhile (bool) stmtdo stmt while (bool);break;block ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , loc=bool;if (bool) stmtif (bool) stmt else stmtwhile (bool) stmtdo stmt while (bool);break;block ,  ,  ,  ,  ,  , 
+loc	|	 loc ,  ,  ,  , loc[bool]id ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+bool	|	 bool ,  ,  ,  , bool || joinjoin , bool || joinjoin ,  ,  ,  ,  ,  , bool || joinjoin ,  ,  ,  , bool || joinjoin ,  ,  , bool || joinjoin ,  , bool || joinjoin ,  ,  ,  , bool || joinjoin , bool || joinjoin ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+join	|	 join ,  ,  ,  , join && equalityequality , join && equalityequality ,  ,  ,  ,  ,  , join && equalityequality ,  ,  ,  , join && equalityequality ,  ,  , join && equalityequality ,  , join && equalityequality ,  ,  ,  , join && equalityequality , join && equalityequality ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+equality	|	 equality ,  ,  ,  , equality == relequality!=relrel , equality == relequality!=relrel ,  ,  ,  ,  ,  , equality == relequality!=relrel ,  ,  ,  , equality == relequality!=relrel ,  ,  , equality == relequality!=relrel ,  , equality == relequality!=relrel ,  ,  ,  , equality == relequality!=relrel , equality == relequality!=relrel ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+rel	|	 rel ,  ,  ,  , expr < exprexpr <= exprexpr >= exprexpr > exprexpr , expr < exprexpr <= exprexpr >= exprexpr > exprexpr ,  ,  ,  ,  ,  , expr < exprexpr <= exprexpr >= exprexpr > exprexpr ,  ,  ,  , expr < exprexpr <= exprexpr >= exprexpr > exprexpr ,  ,  , expr < exprexpr <= exprexpr >= exprexpr > exprexpr ,  , expr < exprexpr <= exprexpr >= exprexpr > exprexpr ,  ,  ,  , expr < exprexpr <= exprexpr >= exprexpr > exprexpr , expr < exprexpr <= exprexpr >= exprexpr > exprexpr ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+expr	|	 expr ,  ,  ,  , expr+termexpr-termterm , expr+termexpr-termterm ,  ,  ,  ,  ,  , expr+termexpr-termterm ,  ,  ,  , expr+termexpr-termterm ,  ,  , expr+termexpr-termterm ,  , expr+termexpr-termterm ,  ,  ,  , expr+termexpr-termterm , expr+termexpr-termterm ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+term	|	 term ,  ,  ,  , term * unaryterm/unaryunary , term * unaryterm/unaryunary ,  ,  ,  ,  ,  , term * unaryterm/unaryunary ,  ,  ,  , term * unaryterm/unaryunary ,  ,  , term * unaryterm/unaryunary ,  , term * unaryterm/unaryunary ,  ,  ,  , term * unaryterm/unaryunary , term * unaryterm/unaryunary ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+unary	|	 unary ,  ,  ,  , !unary-unaryfactor , !unary-unaryfactor ,  ,  ,  ,  ,  , !unary-unaryfactor ,  ,  ,  , !unary-unaryfactor ,  ,  , !unary-unaryfactor ,  , !unary-unaryfactor ,  ,  ,  , !unary-unaryfactor , !unary-unaryfactor ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
+factor	|	 factor ,  ,  ,  , (bool)locnumrealtruefalse , (bool)locnumrealtruefalse ,  ,  ,  ,  ,  , (bool)locnumrealtruefalse ,  ,  ,  ,  ,  ,  , (bool)locnumrealtruefalse ,  , (bool)locnumrealtruefalse ,  ,  ,  ,  , (bool)locnumrealtruefalse ,  ,  ,  ,  ,  ,  ,  ,  ,  ,  , 
